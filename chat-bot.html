@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- 제목 -->
+<title>대학교 챗봇</title>
+<!-- css 불러오기 -->
+<link href="font.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<header>
+	<!-- 상단바 정리 코드 -->
+<style>
+        .chat {
+            display: none;
+        }
+            .logo-container {
+              display: flex;
+              align-items: center;
+              position: relative;
+              top: 0px;
+            }
+</style>
+
+<h1>
+<!-- 대학교 로고 불러오기 -->
+<span class="logo-container">
+<img src="cup_emblem_3-removebg-preview.png" alt="학교로고" style="width: 70px; height: auto;">
+<!-- 제목부분 -->
+<span style="vertical-align: middle; margin-left: 10px;">
+부산가톨릭대학교 </span>
+</span>
+
+</h1>
+</header>
+<!-- 채팅의 입력창과 사용자의 입력창이 포함된 컨텐츠 -->
+<main>
+	<!-- 채팅 입력하는 창 -->
+<div id="chat-container">
+	<div id="chat-log">
+
+		<!-- 챗봇 인사말 왼쪽에 출력 -->
+		<div class="message-container left">
+			<div class="message-bubble">
+				 안녕하세요, 부산가톨릭대학교에 오신 것을 환영합니다 : ) <p>
+				 ❓궁금한 내용이 있거나, 모르시는 부분이 있으면 여기다 입력해주세요!😘 <p>
+				 📌24시간 어디서든 실시간으로 답변해드리고, 만약 해결이 안되시면 담당자에게 연결해드릴게요 : ) <p>
+
+				<!-- 버튼 그리드 -->
+					<div class="button-grid">
+					<button id="image-button-1" class="image-button">
+					<img src="book.png" alt="전공과목">
+					전공과목 </button>
+					<button id="image-button-2" class="image-button">
+					<img src="book2.png" alt="교양과목">
+					교양과목 </button>
+					<button id="image-button-3" class="image-button">
+					<img src="book3.png" alt="계절학기">
+					계절학기 </button>
+					<button id="image-button-4" class="image-button">
+					<img src="money.png" alt="등록금">
+					등록금 </button>
+					<button id="image-button-5" class="image-button">
+					<img src="call.png" alt="교내연락처">
+					교내연락처 </button>
+					<button id="image-button-6" class="image-button">
+					<img src="졸업.png" alt="졸업">
+					졸업 </button>
+					<button id="image-button-7" class="image-button">
+					<img src="calendar.png" alt="학사일정">
+					학사일정 </button>
+					<button id="image-button-8" class="image-button">
+					<img src="score.png" alt="학점조회">
+					학점조회 </button>
+					<button id="image-button-9" class="image-button">
+					<img src="기숙사.png" alt="기숙사">
+					기숙사 </button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="chatbot-response">
+	</div>
+	<!-- 셀렉트 박스 -->
+	<div id="select-container" style="display: none;">
+		<label for="chatbot-select">원하시는 부서를 선택해주세요:</label>
+		<select id="chatbot-select">
+			<option value="교무부">교무부</option>
+			<option value="학사지원부">학사지원부</option>
+			<option value="교육성과관리부">교육성과관리부</option>
+			<option value="학생부">학생부</option>
+			<option value="장학부">장학부</option>
+			<option value="인재개발부">인재개발부</option>
+			<option value="사회봉사센터">사회봉사센터</option>
+			<option value="예산부">예산부</option>
+			<option value="기획부">기획부</option>
+			<option value="대학혁신추진단">대학혁신추진단</option>
+			<option value="총무부">총무부</option>
+			<option value="경리부">경리부</option>
+			<option value="시설관리부">시설관리부</option>
+			<option value="교목처">교목처</option>
+			<option value="입학관리부">입학관리부</option>
+			<option value="입학사정관실">입학사정관실</option>
+			<option value="대외협력부">대외협력부</option>
+			<option value="연구부">연구부</option>
+			<option value="대학원">대학원</option>
+			<option value="(2층)멀티실">(2층)멀티실</option>
+			<option value="(3층)제1자료실">(3층)제1자료실</option>
+			<option value="(4층)제2자료실">(4층)제2자료실</option>
+			<option value="(5층)참고자료실">(5층)참고자료실</option>
+			<option value="개발팀">개발팀</option>
+			<option value="서버/네트워크">서버/네트워크</option>
+			<option value="홈페이지">홈페이지</option>
+			<option value="PC헬퍼">PC헬퍼</option>
+			<option value="행정실">행정실</option>
+			<option value="진로심리상담센터">진로심리상담센터</option>
+			<option value="취업지원센터">취업지원센터</option>
+			<option value="인권·성평등센터">인권·성평등센터</option>
+			<option value="교수학습개발센터">교수학습개발센터</option>
+			<option value="예비군대대">예비군대대</option>
+			<option value="산학협력단">산학협력단</option>
+			<option value="평생교육원">평생교육원</option>
+		</select>
+		<!-- 셀렉트 박스 답변 보내기 버튼 -->
+		<button id="send-click">답변 보내기</button>
+	</div>
+
+	<!-- 사용자 입력 창과 전송버튼 -->
+	<div id="user-input">
+		<!-- 사용자 텍스트를 입력할 수 있는 채팅창 -->
+		<input type="text" id="user-message" placeholder="질문을 입력해주세요" autofocus>
+		<!-- 사용자가 입력한 텍스트를 전송하는 버튼 -->
+		<button id="send-button">전송</button>
+	</div>
+</div>
+</main>
+<!-- js 불러오기 -->
+<script src="코드 정리.js"></script>
+</body>
+</html>
